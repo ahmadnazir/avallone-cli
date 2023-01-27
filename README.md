@@ -1,24 +1,21 @@
+# Avallone CLI
 
-# bagcli
+## Install
 
-Brot and Games CLI
+````
+git clone https://github.com/ahmadnazir/avallone-cli
+cd avallone-cli
+./install
+````
 
-This repository is part of a blog post about building a custom CLI with Bash:
-
-https://medium.com/@brotandgames/build-a-custom-cli-with-bash-e3ce60cfb9a4
-
-It is meant to be a blueprint or skeleton for a Bash compliant CLI.
 
 ## Usage
 
-````
-git clone https://github.com/brotandgames/bagcli
-cd bagcli
-./bagcli help
-````
+```
+ava k9s
+```
 
-## Maintainer
+## Credits
 
-Brot and Games
-
-https://github.com/brotandgames
+Modified using the skeleton code provided by Brot and Games CLI
+https://github.com/brotandgames/bagcli
