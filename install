@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+export BAGCLI_WORKDIR=$(cd "$(dirname "$(realpath "$0")")" && pwd)
+. "$BAGCLI_WORKDIR/common"
+
+BIN_FILE=~/.local/bin/ava
+cli_log "Installing: $BIN_FILE"
+ln -s $BAGCLI_WORKDIR/bagcli $BIN_FILE
+
+CONFIG_FILE=$CONFIG_DIR/config
+cli_log "Setting up default configuration: $CONFIG_FILE"
+mkdir -p $CONFIG_DIR
+cp $BAGCLI_WORKDIR/config.template $CONFIG_FILE
+
+cli_log "Done!"

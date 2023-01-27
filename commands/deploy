@@ -2,6 +2,8 @@
 set -e
 . "$BAGCLI_WORKDIR/common"
 
+cli_log "Running this command is disabled. It is a reference for implementing new commands."
+
 cli_help_deploy() {
   echo "
 Command: deploy

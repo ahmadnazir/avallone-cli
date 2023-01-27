@@ -1,37 +1,36 @@
 #!/usr/bin/env bash
 set -e
-export BAGCLI_WORKDIR=$(cd $(dirname $0) && pwd)
-# shellcheck source=common
+export BAGCLI_WORKDIR=$(cd "$(dirname "$(realpath "$0")")" && pwd)
 . "$BAGCLI_WORKDIR/common"
 
 cli_help() {
   cli_name=${0##*/}
   echo "
 $cli_name
-Brot and Games CLI
+Avallone CLI
 Version: $(cat $BAGCLI_WORKDIR/VERSION)
-https://github.com/brotandgames/bagcli
+https://github.com/ahmadnazir/avallone-cli
 
 Usage: $cli_name [command]
 
 Commands:
-  deploy    Deploy
+  k9s       K9s for tests stacks
   *         Help
 "
   exit 1
 }
 
-cli_log "Exporting config ..."
-[ ! -f "$BAGCLI_WORKDIR/config" ] \
-  && echo "ERROR: No $BAGCLI_WORKDIR/config file found. " \
-  && echo "cp $BAGCLI_WORKDIR/config.template $BAGCLI_WORKDIR/config and adjust." \
+cli_log "Reading configuration"
+[ ! -f "$CONFIG_DIR/config" ] \
+  && echo "ERROR: No $CONFIG_DIR/config file found. " \
+  && echo "Run install script." \
   && exit 1
 
-export $(cat "$BAGCLI_WORKDIR/config" | xargs)
+export $(cat "$CONFIG_DIR/config" | xargs)
 
 case "$1" in
-  deploy|d)
-    "$BAGCLI_WORKDIR/commands/deploy" "$2" | tee -ia "$BAGCLI_WORKDIR/logs/deploy_${2}.log"
+  k9s|k)
+    "$BAGCLI_WORKDIR/commands/k9s" "$2" | tee -ia "$BAGCLI_WORKDIR/logs/k9s_${2}.log"
     ;;
   *)
     cli_help

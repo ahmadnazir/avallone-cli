@@ -1,4 +1,1 @@
-BAGCLI_K8S_NAMESPACE=project-test
-BAGCLI_PROJECTS_PATH=/opt/myproject/projects
-BAGCLI_PROJECT_NAME=project-001
-BAGCLI_REPO_PATH=/path/to/repo
+AVALLONE_KLUSTER_ROLE_ARN='arn:aws:iam::267941777155:role/clusterAdminRole-eks-dev-cbda05d'
