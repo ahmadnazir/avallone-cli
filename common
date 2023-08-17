@@ -5,3 +5,6 @@ cli_log() {
   timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
   echo "== $script_name $timestamp $1"
 }
+
+CALIBURNUS_PATH=~/code/avallone/caliburnus
+BACKEND_SERVICES_PATH=~/code/avallone/backend-services

@@ -3,7 +3,7 @@
 ## Install
 
 ````
-git clone https://github.com/ahmadnazir/avallone-cli
+git clone https://github.com/avallone/avallone-cli
 cd avallone-cli
 ./install
 ````
@@ -12,7 +12,7 @@ cd avallone-cli
 ## Usage
 
 ```
-ava k9s
+avallone k9s
 ```
 
 ## Credits

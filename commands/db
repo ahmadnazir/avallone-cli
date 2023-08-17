@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -e
+. "$WORKDIR/common"
+
+cd ${BACKEND_SERVICES_PATH}
+
+case "$1" in
+    revert|r)
+        nx run core:revert-migration
+        ;;
+    migrate|m)
+        RUN_SEED=true nx run core:apply-migrations
+        ;;
+    *)
+        echo "Nothing to do for '$1'"
+        ;;
+esac

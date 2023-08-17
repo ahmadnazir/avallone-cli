@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+. "$WORKDIR/common"
+
+cli_log "Getting current account..."
+aws sts get-caller-identity --query "Account" --output text

@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -e
+export WORKDIR=$(cd "$(dirname "$(realpath "$0")")" && pwd)
+. "$WORKDIR/common"
+
+cli_help() {
+  cli_name=${0##*/}
+  echo "
+$cli_name
+Avallone CLI
+Version: $(cat $WORKDIR/VERSION)
+https://github.com/ahmadnazir/avallone-cli
+
+Usage: $cli_name [service] [command]
+
+Commands:
+  caliburnus  Run caliburnus
+  db          revert | migrate
+  k9s         K9s for tests stacks
+  user        Get current AWS user
+  *           Help
+"
+  exit 1
+}
+
+cli_log "Reading configuration"
+[ ! -f "$CONFIG_DIR/config" ] \
+  && echo "ERROR: No $CONFIG_DIR/config file found. " \
+  && echo "Run install script." \
+  && exit 1
+
+export $(cat "$CONFIG_DIR/config" | xargs)
+
+case "$1" in
+  caliburnus|c)
+      "$WORKDIR/commands/caliburnus" "$2" | tee -ia "$WORKDIR/logs/caliburnus_${2}.log"
+      ;;
+  db)
+      "$WORKDIR/commands/db" "$2" | tee -ia "$WORKDIR/logs/db_${2}.log"
+      ;;
+  k9s|k)
+    "$WORKDIR/commands/k9s" "$2" | tee -ia "$WORKDIR/logs/k9s_${2}.log"
+    ;;
+  user|u)
+      "$WORKDIR/commands/user" "$2" | tee -ia "$WORKDIR/logs/user_${2}.log"
+      ;;
+  *)
+    cli_help
+    ;;
+esac
